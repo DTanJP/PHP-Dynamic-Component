@@ -9,6 +9,7 @@ You can use it by itself:
 <?php
   require_once("DynamicComponent.php");
   $div = new DynamicComponent();
+  $div->data['tag'] = 'div';
   $div->addClass("container");
   $div->addChild("Hello World");
   echo $div->compile();
