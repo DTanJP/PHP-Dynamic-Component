@@ -173,8 +173,8 @@ class DynamicComponent {
                 $id = substr($query, 1, strlen($query));
                 foreach($this->children as $child) {
                     if($child instanceof DynamicComponent) {
-                        if(isset($child['id'])) {
-                            if($child['id'] == $id)
+                        if(isset($child->data['id'])) {
+                            if($child->data['id'] == $id)
                                 $result[] = $child;
                         }
                     }
@@ -189,9 +189,17 @@ class DynamicComponent {
                 $class = substr($query, 1, strlen($query));
                 foreach($this->children as $child) {
                     if($child instanceof DynamicComponent) {
-                        if(isset($child['class'])) {
-                            if($child['class'] == $class)
-                                $result[] = $child;
+                        if(isset($child->data['class'])) {
+                                if(is_array($child->data['class'])) {
+                                    foreach($child->data['class'] as $c) {
+                                        if($c == $class)
+                                            $result[] = $child;
+                                    }
+                                } else if(is_string($child['class'])) {
+                                    if($child['class'] == $class)
+                                        $result[] = $child;
+                                }
+                            }
                         }
                     }
                     $add = $child->select($query);
@@ -201,9 +209,8 @@ class DynamicComponent {
                     }
                 }
             }
+            return $result;
         }
-        return $result;
-    }
     
     /** Variables **/
     public $data = [
