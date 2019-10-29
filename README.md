@@ -61,3 +61,5 @@ $output = "
 echo $output;
 ```
 The html code sample looks small and harmless and really easy to read. Until you eventually write massive amounts of it that it turns to spaghetti code that no one wants to approach it. Dynamic Component just breaks it up and makes it easier to manage.
+
+This project is a prototype and will not be updated, but rather to serve as a base/foundation/reference point for future use.
